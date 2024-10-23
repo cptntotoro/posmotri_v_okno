@@ -1,5 +1,5 @@
 /* КОНФИГ */
-const preloaderWaitindTime = 1200;
+const preloaderWaitingTime = 1200;
 const cardsOnPage = 5;
 const BASE_URL = 'https://v-content.practicum-team.ru';
 const endpoint = `${BASE_URL}/api/videos?pagination[pageSize]=${cardsOnPage}&`;
@@ -73,7 +73,7 @@ async function mainMechanics(endpoint) {
       .querySelectorAll('.content__card-link')[0]
       .classList.add('content__card-link_current');
     await waitForReadyVideo(videoElement);
-    await delay(preloaderWaitindTime);
+    await delay(preloaderWaitingTime);
     removePreloader(videoContainer, '.preloader');
     removePreloader(cardsContainer, '.preloader');
     chooseCurrentVideo({
@@ -115,7 +115,7 @@ async function delay(ms) {
   });
 }
 
-// Промис, который резолвится, если видео целиком готово к проинрыванию без пауз
+// Промис, который резолвится, если видео целиком готово к проигрыванию без пауз
 
 async function waitForReadyVideo(video) {
   return await new Promise((resolve) => {
@@ -159,14 +159,14 @@ function appendCards({ baseUrl, dataArray, cardTmp, container }) {
   console.log('Сгенерировал карточки');
 }
 
-// Устанавливет внужное видео в контейнер ✅
+// Устанавливает нужное видео в контейнер ✅
 function setVideo({ baseUrl, video, videoUrl, posterUrl }) {
   video.setAttribute('src', `${baseUrl}${videoUrl}`);
   video.setAttribute('poster', `${baseUrl}${posterUrl}`);
   console.log('Подставил видео в основной блок');
 }
 
-// получает данные из формы и сериализует как надо ✅
+// Получает данные из формы и сериализует как надо ✅
 
 function serializeFormData(form) {
   const city = form.querySelector('input[name="city"]');
@@ -214,17 +214,17 @@ function chooseCurrentVideo({
         });
         item.classList.add(currentLinkClassName);
         showPreloader(preloaderTmp, videoContainer);
-        const vidoObj = videoData.find(
+        const videoObj = videoData.find(
           (video) => String(video.id) === String(item.id)
         );
         setVideo({
           baseUrl,
           video: mainVideo,
-          videoUrl: vidoObj.video.url,
-          posterUrl: vidoObj.poster.url,
+          videoUrl: videoObj.video.url,
+          posterUrl: videoObj.poster.url,
         });
         await waitForReadyVideo(mainVideo);
-        await delay(preloaderWaitindTime);
+        await delay(preloaderWaitingTime);
         removePreloader(videoContainer, '.preloader');
         console.log('Переключил видео');
       };
