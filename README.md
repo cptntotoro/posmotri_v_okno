@@ -1,1 +1,9 @@
-https://github.com/cptntotoro/posmotri_v_okno
+# Посмотри в окно
+HTML, CSS
+
+## О проекте
+Pixel perfect вёрстка по макету Figma строго по рекомендациям к оформлению отдельных блоков.
+
+- Протестирована в Firefox, Google Chrome и Yandex Browser
+- Разница верстки и макета составляет не более 10px по вертикали и 5px по горизонтали
+- Доведена до точного соответствия с помощью Pixel Perfect плагина
